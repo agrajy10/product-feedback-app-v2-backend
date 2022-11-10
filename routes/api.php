@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/feedback/list', [FeedbackController::class, 'index']);
+
+Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
+
+Route::group(['middleware' => ['auth:sanctum']], function (){
+    Route::post('/feedback/create', [FeedbackController::class, 'store']);
+    Route::put('/feedback/edit/{id}', [FeedbackController::class, 'update']);
+});
