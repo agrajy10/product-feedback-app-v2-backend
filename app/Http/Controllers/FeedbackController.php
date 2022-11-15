@@ -14,7 +14,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        return Feedback::all();
+        return Feedback::with('tag')->get();
     }
 
     /**
@@ -37,6 +37,7 @@ class FeedbackController extends Controller
         $request->validate([
             'title' => ['required'],
             'content' => ['required'],
+            'tag_id' => ['required', 'integer'],
         ]);
 
         $feedback = Feedback::create($request->all());
