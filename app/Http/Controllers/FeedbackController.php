@@ -95,4 +95,8 @@ class FeedbackController extends Controller
     {
         //
     }
+
+    public function filter($id) {
+        return Feedback::where('tag_id', $id)->get();
+    }
 }

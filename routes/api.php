@@ -30,6 +30,8 @@ Route::get('/feedback/list', [FeedbackController::class, 'index']);
 
 Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
 
+Route::get('/feedback/tag/{id}', [FeedbackController::class, 'filter']);
+
 Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post('/feedback/create', [FeedbackController::class, 'store']);
     Route::put('/feedback/edit/{id}', [FeedbackController::class, 'update']);
